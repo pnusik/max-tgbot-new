@@ -26,7 +26,7 @@ async def worker(bot: maxapi.Bot, redisclient: aioredis.Redis):
                 task: dict = json.loads(task_json)
                 print(task)
                    
-                await file_message_sender(bot, task.get("file_path"), task.get("author"))
+                await file_message_sender(bot, task.get("file_path", ""), task.get("author", ""), task.get("max_id", ""))
 
             await asyncio.sleep(0.1)
     finally:

@@ -4,6 +4,7 @@ import asyncio
 from config.config import MAX_config
 from maxbotsrc.hendlers import router
 from maxbotsrc.worker import worker
+from db.sqldb import init_db
 
 config = MAX_config()
 async def main():
@@ -12,6 +13,7 @@ async def main():
     dp.include_routers(router)
 
     redis = await get_redis_connection()
+    await init_db()
 
     await asyncio.gather(
             dp.start_polling(bot),

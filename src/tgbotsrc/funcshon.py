@@ -6,9 +6,9 @@ import os
 
 config = TG_cofnig()
 
-async def message_sender(bot: aiogram.Bot, autor: str, msg: str):
+async def message_sender(bot: aiogram.Bot, autor: str, msg: str, chat_id: int, thread_id: int | None):
     text = f">{autor}:\n{msg}"
-    await bot.send_message(chat_id=config.Chat_id, text=text, message_thread_id=config.Thread_id)
+    await bot.send_message(chat_id=chat_id, text=text, message_thread_id=thread_id)
 
 
 async def file_message_sender(bot: aiogram.Bot, file_path: str, file_name: str, autor: str):
@@ -33,4 +33,3 @@ async def file_message_sender(bot: aiogram.Bot, file_path: str, file_name: str, 
 
     if os.path.exists(file_path):
         os.remove(file_path)
-    
